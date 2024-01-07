@@ -171,7 +171,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.5
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5314,6 +5314,7 @@ MonoBehaviour:
   runningKey: 304
   orientation: {fileID: 5238820401998598406}
   playerCam: {fileID: 5239100585477912294}
+  dashEffect: {fileID: 0}
   dashForce: 200
   dashDuration: 0
   dashCd: 2
