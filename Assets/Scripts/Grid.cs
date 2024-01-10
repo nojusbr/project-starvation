@@ -8,18 +8,24 @@ using Random = UnityEngine.Random;
 
 public class Grid : MonoBehaviour
 {
+    [Header("Random Player Spawnpoint")]
+    public GameObject spawnPoint;
+    public GameObject player;
+
+    [Header("Trees")]
+    public float treeNoiseScale = .05f;
+    public float treeDensity = .5f;
+
+    [Header("References")]
     public GameObject[] treePrefabs;
     public Material terrainMaterial;
     public Material edgeMaterial;
+    Cell[,] grid;
+
+    [Header("Specifics")]
     public float waterLevel = .4f;
     public float scale = .1f;
-    public float treeNoiseScale = .05f;
-    public float treeDensity = .5f;
-    public float riverNoiseScale = .06f;
-    public int rivers = 5;
     public int size = 100;
-
-    Cell[,] grid;
 
     void Start()
     {
@@ -63,6 +69,7 @@ public class Grid : MonoBehaviour
         DrawEdgeMesh(grid);
         DrawTexture(grid);
         GenerateTrees(grid);
+        SpawnPlayer();
     }
 
 
@@ -274,4 +281,30 @@ public class Grid : MonoBehaviour
             }
         }
     }
+
+    void SpawnPlayer()
+    {
+        int attempts = 0;
+        int maxAttempts = 100;
+
+        while (attempts < maxAttempts)
+        {
+            int spawnX = Random.Range(0, size);
+            int spawnY = Random.Range(0, size);
+
+            Cell cell = grid[spawnX, spawnY];
+
+            if (!cell.isWater)
+            {
+                GameObject spawnedSpawnPoint = Instantiate(spawnPoint, new Vector3(spawnX, 0, spawnY), Quaternion.identity);
+
+                GameObject spawnedPlayer = Instantiate(player, spawnedSpawnPoint.transform.position, Quaternion.identity);
+
+                return;
+            }
+
+            attempts++;
+        }
+    }
+
 }

@@ -154,12 +154,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681490946917611483}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -2.51, z: 0.81}
-  m_LocalScale: {x: 1, y: 1.1111112, z: 1}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -1.3589998, z: 0.80999947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5239139276810530380}
+  m_Father: {fileID: 5238820401998598406}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!198 &4752238813529710095
 ParticleSystem:
@@ -5241,6 +5241,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5239100585477912294}
+  - {fileID: 4234387965432289541}
   - {fileID: 5239139276810530380}
   - {fileID: 5235998417850327242}
   - {fileID: 5240771479555520432}
@@ -5314,10 +5315,12 @@ MonoBehaviour:
   runningKey: 304
   orientation: {fileID: 5238820401998598406}
   playerCam: {fileID: 5239100585477912294}
-  dashEffect: {fileID: 0}
+  capsuleMesh: {fileID: 5239139276810530380}
+  dashEffect: {fileID: 4752238813529710095}
   dashForce: 200
   dashDuration: 0
   dashCd: 2
+  dashCdTimer: 0
   dashKey: 32
 --- !u!1 &5241892580736583940
 GameObject:
@@ -5349,8 +5352,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4234387965432289541}
+  m_Children: []
   m_Father: {fileID: 5238820401998598406}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5246596055365794806

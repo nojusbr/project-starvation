@@ -11,20 +11,22 @@ public class FirstPersonMovement : MonoBehaviour
     public bool IsRunning { get; private set; }
     public float runSpeed = 9;
     public KeyCode runningKey = KeyCode.LeftShift;
-    Rigidbody rigidbody;
+    Rigidbody rb;
 
     [Header("References")]
     public Transform orientation;
     public Transform playerCam;
+    public Transform capsuleMesh;
     public ParticleSystem dashEffect;
 
     [Header("Dashing")]
     public float dashForce;
     public float dashDuration;
+    public bool isDashing;
 
     [Header("Cooldown")]
     public float dashCd;
-    private float dashCdTimer;
+    public float dashCdTimer;
 
     [Header("Input")]
     public KeyCode dashKey = KeyCode.Space;
@@ -35,49 +37,51 @@ public class FirstPersonMovement : MonoBehaviour
 
     void Awake()
     {
-        // Get the rigidbody on this.
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         Move();
 
         if (Input.GetKeyDown(dashKey))
         {
-            dashEffect.Play();
             Dash();
         }
 
 
         if (dashCdTimer > 0)
+        {
             dashCdTimer -= Time.deltaTime;
+            isDashing = false;
+        }
     }
 
-    private void Move()
+    public void Move()
     {
-        // Update IsRunning from input.
         IsRunning = canRun && Input.GetKey(runningKey);
 
-        // Get targetMovingSpeed.
         float targetMovingSpeed = IsRunning ? runSpeed : speed;
         if (speedOverrides.Count > 0)
         {
             targetMovingSpeed = speedOverrides[speedOverrides.Count - 1]();
         }
 
-        // Get targetVelocity from input.
-        Vector2 targetVelocity = new Vector2(Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
 
-        // Apply movement.
-        rigidbody.velocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);
+        Vector2 targetVelocity = new Vector2(Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
+        rb.velocity = transform.rotation * new Vector3(targetVelocity.x, rb.velocity.y, targetVelocity.y);
     }
 
-    private void Dash()
+    public void Dash()
     {
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
-        Vector3 forceToApply = orientation.forward * dashForce + orientation.up;
-        rigidbody.AddForce(forceToApply, ForceMode.Impulse);
+
+        Vector3 playerVelocity = rb.velocity.normalized;
+        Vector3 forceToApply = playerVelocity * dashForce + orientation.up; 
+        rb.AddForce(forceToApply, ForceMode.Impulse);
+        dashEffect.Play();
+        Invoke("ResetRotation", 1f);
+        isDashing = true;
     }
 }
