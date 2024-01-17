@@ -41,6 +41,7 @@ public class LightningManager : MonoBehaviour
         RenderSettings.ambientLight = Preset.ambientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.fogColor.Evaluate(timePercent);
 
+
         //If the directional light is set then rotate and set it's color, I actually rarely use the rotation because it casts tall shadows unless you clamp the value
         if (DirectionalLight != null)
         {
@@ -48,7 +49,6 @@ public class LightningManager : MonoBehaviour
 
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
         }
-
     }
 
     //Try to find a directional light to use if we haven't set one

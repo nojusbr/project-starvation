@@ -298,7 +298,7 @@ public class Grid : MonoBehaviour
             {
                 GameObject spawnedSpawnPoint = Instantiate(spawnPoint, new Vector3(spawnX, 0, spawnY), Quaternion.identity);
 
-                GameObject spawnedPlayer = Instantiate(player, spawnedSpawnPoint.transform.position, Quaternion.identity);
+                player.transform.position = new Vector3(spawnedSpawnPoint.transform.position.x, spawnedSpawnPoint.transform.position.y, spawnedSpawnPoint.transform.position.z);    
 
                 return;
             }

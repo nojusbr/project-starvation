@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 109922266054673326}
   - component: {fileID: 1606952235269406412}
   - component: {fileID: -261838619768352416}
+  - component: {fileID: 292513773172139476}
   m_Layer: 0
   m_Name: Oak_Tree
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -103,7 +104,25 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4458022
-  m_Height: 4.4813046
+  m_Radius: 1.0662067
+  m_Height: 8.18845
   m_Direction: 1
-  m_Center: {x: 0, y: 1.85, z: 0}
+  m_Center: {x: 0, y: 1.8535728, z: 0}
+--- !u!114 &292513773172139476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928306635753559061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceea49fb6e7dd534a8d2942e15629e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceHealth: 1000
+  resourcePrefabs:
+  - {fileID: 7763330124273197585, guid: dfdf5fcfd34b34849bb2fa2a59540a7a, type: 3}
+  - {fileID: 3098547295575099878, guid: 6280d24d7bb6bc640a507998339f5526, type: 3}
+  maxRandom: 6
+  minRandom: 1

@@ -5,59 +5,24 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     private Animator animator;
-    public FirstPersonMovement movement;
+    public SelectionManager resourceGathering;
+    public ParticleSystem chopEffect;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        movement = GetComponent<FirstPersonMovement>();
     }
 
     private void Update()
     {
         CheckMovement();
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            if (!resourceGathering.IsChopping) return;
+            else CheckChopping();
+        }
     }
-
-    //private void CheckDash()
-    //{
-    //    float horizontalInput = Input.GetAxis("Horizontal");
-    //    float verticalInput = Input.GetAxis("Vertical");
-    //    bool isMoving = Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f;
-
-    //    if (isMoving)
-    //    {
-    //        StopCurrentAnimation();
-
-    //        if (Mathf.Abs(horizontalInput) > Mathf.Abs(verticalInput))
-    //        {
-    //            if (horizontalInput > 0.1f)
-    //            {
-    //                PlayAnimation("IsRollingLeft");
-    //            }
-    //            else if (horizontalInput < -0.1f)
-    //            {
-    //                PlayAnimation("IsRollingRight");
-    //            }
-    //        }
-    //        else
-    //        {
-    //            if (verticalInput > 0.1f)
-    //            {
-    //                PlayAnimation("IsRollingFw");
-    //                Debug.Log("ROLLING FORWARD");
-    //            }
-    //            else if (verticalInput < -0.1f)
-    //            {
-    //                PlayAnimation("IsRollingBckw");
-    //                Debug.Log("ROLLING BACKWARDS");
-    //            }
-    //        }
-    //    }
-    //    else
-    //    {
-    //        StopCurrentAnimation();
-    //    }
-    //}
 
     private void CheckMovement()
     {
@@ -104,11 +69,34 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetBool("IsRunningRight", false);
         animator.SetBool("IsRunningLeft", false);
         animator.SetBool("IsRunningBackwards", false);
+        animator.SetBool("IsChopping", false);
     }
 
     private void PlayAnimation(string animationName)
     {
         StopCurrentAnimation();
         animator.SetBool(animationName, true);
+    }
+
+    public void CheckChopping()
+    {
+        if (resourceGathering.IsChopping)
+        {
+            PlayAnimation("IsChopping");
+            StartCoroutine(ChopEffectRoutine(1.5f));
+        }
+        else
+        {
+            StopCurrentAnimation();
+        }
+    }
+
+
+
+
+    private IEnumerator ChopEffectRoutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        chopEffect.Play();
     }
 }

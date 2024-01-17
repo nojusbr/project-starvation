@@ -322,6 +322,8 @@ GameObject:
   - component: {fileID: 7116527712305316729}
   - component: {fileID: 2693222813600157983}
   - component: {fileID: 4921220632388884140}
+  - component: {fileID: 1745583326763180360}
+  - component: {fileID: 2375988857323699724}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -425,6 +427,38 @@ MonoBehaviour:
   dashCd: 2
   dashCdTimer: 0
   dashKey: 32
+--- !u!114 &1745583326763180360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8408668379602588581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bceb14b51f944438cc80bb16dbcfcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeTag: Tree
+  chopDamage: 1
+  playerModel: {fileID: 5397330260669877009}
+  IsChopping: 0
+  toolManager: {fileID: 2375988857323699724}
+  axe: {fileID: 30983454985810962}
+--- !u!114 &2375988857323699724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8408668379602588581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20813a5f1a2ba534e9211d3b8f3e426d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionManager: {fileID: 1745583326763180360}
+  isAxeEquipped: 0
 --- !u!1 &8606541183126830751
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.15
-  isGrounded: 1
+  isGrounded: 0
 --- !u!1 &8755746177699385667
 GameObject:
   m_ObjectHideFlags: 0
@@ -5538,34 +5572,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: HumanMale_Character_FREE
       objectReference: {fileID: 0}
+    - target: {fileID: 8463216915612260707, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 4921220632388884140}
+    - target: {fileID: 8463216915612260707, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: resourceGathering
+      value: 
+      objectReference: {fileID: 1745583326763180360}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 753506227671094396}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+--- !u!1 &30983454985810962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4031234859224539323, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+  m_PrefabInstance: {fileID: 4008135460958753961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2623768038869858912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1438546959266459337, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
   m_PrefabInstance: {fileID: 4008135460958753961}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3396470092663103706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-  m_PrefabInstance: {fileID: 4008135460958753961}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &753506227671094396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3396470092663103706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b254e270be278594686018d17b4805fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movement: {fileID: 4921220632388884140}
