@@ -12,12 +12,12 @@ public class Grid : MonoBehaviour
     public GameObject spawnPoint;
     public GameObject player;
 
-    [Header("Trees")]
-    public float treeNoiseScale = .05f;
-    public float treeDensity = .5f;
+    [Header("Resources")]
+    public float resourceNoiseScale = .05f;
+    public float resourceDensity = .5f;
 
     [Header("References")]
-    public GameObject[] treePrefabs;
+    public GameObject[] resourcePrefabs;
     public Material terrainMaterial;
     public Material edgeMaterial;
     Cell[,] grid;
@@ -65,15 +65,16 @@ public class Grid : MonoBehaviour
             }
         }
 
-        DrawTerrainMesh(grid);
-        DrawEdgeMesh(grid);
-        DrawTexture(grid);
-        GenerateTrees(grid);
-        SpawnPlayer();
+        Vector3 worldGeneratorPosition = transform.position;
+
+        DrawTerrainMesh(grid, worldGeneratorPosition);
+        DrawEdgeMesh(grid, worldGeneratorPosition);
+        DrawTexture(grid, worldGeneratorPosition);
+        GenerateResources(grid, worldGeneratorPosition);
+        SpawnPlayer(worldGeneratorPosition);
     }
 
-
-    void DrawTerrainMesh(Cell[,] grid)
+    void DrawTerrainMesh(Cell[,] grid, Vector3 worldGeneratorPosition)
     {
         Mesh mesh = new Mesh();
         List<Vector3> vertices = new List<Vector3>();
@@ -125,9 +126,12 @@ public class Grid : MonoBehaviour
         MeshCollider meshCollider = gameObject.AddComponent<MeshCollider>();
         meshCollider.sharedMesh = mesh;
 
+        meshFilter.transform.position = worldGeneratorPosition;
+        meshCollider.transform.position = worldGeneratorPosition;
+
     }
 
-    void DrawEdgeMesh(Cell[,] grid)
+    void DrawEdgeMesh(Cell[,] grid, Vector3 worldGeneratorPosition)
     {
         Mesh mesh = new Mesh();
         List<Vector3> vertices = new List<Vector3>();
@@ -217,6 +221,8 @@ public class Grid : MonoBehaviour
         GameObject edgeObj = new GameObject("Edge");
         edgeObj.transform.SetParent(transform);
 
+        edgeObj.transform.position = worldGeneratorPosition;
+
         MeshFilter meshFilter = edgeObj.AddComponent<MeshFilter>();
         meshFilter.mesh = mesh;
 
@@ -224,7 +230,7 @@ public class Grid : MonoBehaviour
         meshRenderer.material = edgeMaterial;
     }
 
-    void DrawTexture(Cell[,] grid)
+    void DrawTexture(Cell[,] grid, Vector3 worldGeneratorPosition)
     {
         Texture2D texture = new Texture2D(size, size);
         Color[] colorMap = new Color[size * size];
@@ -246,9 +252,10 @@ public class Grid : MonoBehaviour
         MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
         meshRenderer.material = terrainMaterial;
         meshRenderer.material.mainTexture = texture;
+        meshRenderer.transform.position = worldGeneratorPosition;
     }
 
-    void GenerateTrees(Cell[,] grid)
+    void GenerateResources(Cell[,] grid, Vector3 worldGeneratorPosition)
     {
         float[,] noiseMap = new float[size, size];
         (float xOffset, float yOffset) = (Random.Range(-10000f, 10000f), Random.Range(-10000f, 10000f));
@@ -256,7 +263,7 @@ public class Grid : MonoBehaviour
         {
             for (int x = 0; x < size; x++)
             {
-                float noiseValue = Mathf.PerlinNoise(x * treeNoiseScale + xOffset, y * treeNoiseScale + yOffset);
+                float noiseValue = Mathf.PerlinNoise(x * resourceNoiseScale + xOffset, y * resourceNoiseScale + yOffset);
                 noiseMap[x, y] = noiseValue;
             }
         }
@@ -268,21 +275,22 @@ public class Grid : MonoBehaviour
                 Cell cell = grid[x, y];
                 if (!cell.isWater)
                 {
-                    float v = Random.Range(0f, treeDensity);
+                    float v = Random.Range(0f, resourceDensity);
                     if (noiseMap[x, y] < v)
                     {
-                        GameObject prefab = treePrefabs[Random.Range(0, treePrefabs.Length)];
-                        GameObject tree = Instantiate(prefab, transform);
-                        tree.transform.position = new Vector3(x, 0, y);
-                        tree.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
-                        tree.transform.localScale = Vector3.one * Random.Range(.8f, 1.2f);
+                        GameObject prefab = resourcePrefabs[Random.Range(0, resourcePrefabs.Length)];
+                        GameObject resource = Instantiate(prefab, transform);
+                        resource.transform.position = new Vector3(x, 0, y);
+                        resource.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
+                        resource.transform.localScale = Vector3.one * Random.Range(.8f, 1.2f);
+                        resource.transform.position = new Vector3(x, 0, y) + worldGeneratorPosition;
                     }
                 }
             }
         }
     }
 
-    void SpawnPlayer()
+    void SpawnPlayer(Vector3 worldGeneratorPosition)
     {
         int attempts = 0;
         int maxAttempts = 100;
@@ -298,12 +306,17 @@ public class Grid : MonoBehaviour
             {
                 GameObject spawnedSpawnPoint = Instantiate(spawnPoint, new Vector3(spawnX, 0, spawnY), Quaternion.identity);
 
-                player.transform.position = new Vector3(spawnedSpawnPoint.transform.position.x, spawnedSpawnPoint.transform.position.y, spawnedSpawnPoint.transform.position.z);    
+                player.transform.position = new Vector3(spawnedSpawnPoint.transform.position.x, spawnedSpawnPoint.transform.position.y, spawnedSpawnPoint.transform.position.z);
+
+                spawnedSpawnPoint.transform.position += worldGeneratorPosition;
+                player.transform.position = spawnedSpawnPoint.transform.position;
 
                 return;
             }
 
             attempts++;
+
+
         }
     }
 

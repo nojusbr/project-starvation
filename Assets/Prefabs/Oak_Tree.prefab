@@ -20,7 +20,7 @@ GameObject:
   m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3024547477243492337
 Transform:
@@ -128,8 +128,8 @@ MonoBehaviour:
   - {fileID: 3098547295575099878, guid: 6280d24d7bb6bc640a507998339f5526, type: 3}
   maxRandom: 6
   minRandom: 1
-  resourceGatheringAudio: {fileID: 7896166521391214690, guid: ab6ef1f8a1111d94d971bd3e7589bd5f, type: 3}
-  destroySound: {fileID: -134855736016455151, guid: ab6ef1f8a1111d94d971bd3e7589bd5f, type: 3}
+  audioSource: {fileID: 0}
+  sounds: []
 --- !u!82 &-2638737132120391009
 AudioSource:
   m_ObjectHideFlags: 0
