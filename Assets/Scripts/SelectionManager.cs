@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -13,12 +14,15 @@ public class SelectionManager : MonoBehaviour
     public GameObject axe;
 
     public ToolManager toolManager;
-    
+
+    public AudioSource audioSource;
+    public AudioClip pickUpSound;
 
     private void Start()
     {
         axe.SetActive(false);
         toolManager = GetComponent<ToolManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -68,6 +72,7 @@ public class SelectionManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Resource"))
         {
             Destroy(collision.gameObject);
+            audioSource.PlayOneShot(pickUpSound);
         }
     }
 

@@ -6,7 +6,6 @@ public class PlayerAnimationController : MonoBehaviour
 {
     private Animator animator;
     public SelectionManager resourceGathering;
-    public ParticleSystem chopEffect;
 
     private void Start()
     {
@@ -97,6 +96,5 @@ public class PlayerAnimationController : MonoBehaviour
     private IEnumerator ChopEffectRoutine(float duration)
     {
         yield return new WaitForSeconds(duration);
-        chopEffect.Play();
     }
 }
