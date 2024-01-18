@@ -66,16 +66,4 @@ public class SelectionManager : MonoBehaviour
         print("Chopping");
         IsChopping = false;
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Resource"))
-        {
-            Destroy(collision.gameObject);
-            audioSource.PlayOneShot(pickUpSound);
-        }
-    }
-
-
-
 }
