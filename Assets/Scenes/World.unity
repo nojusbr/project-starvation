@@ -777,6 +777,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814293762}
   m_CullTransparentMesh: 1
+--- !u!1 &820557873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820557875}
+  - component: {fileID: 820557874}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &820557874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820557873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352878513d9b20a4c8d71dd1800ba1dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &820557875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820557873}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 226.23384, y: 63.443394, z: 120.33071}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &953387286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,7 +1275,7 @@ GameObject:
   - component: {fileID: 1400708710}
   - component: {fileID: 1400708709}
   m_Layer: 0
-  m_Name: WorldGenerator (1)
+  m_Name: Rock Biome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1249,19 +1293,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408c640cc7940d74fa3bb828c53d098c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 1112966431211004617, guid: dc55d48783b365b46b0a987e823323fa, type: 3}
-  player: {fileID: 1206987592}
-  resourceNoiseScale: 0.19
-  resourceDensity: 0.29
+  spawnPoint: {fileID: 0}
+  player: {fileID: 0}
+  resourceNoiseScale: 0.1
+  resourceDensity: 0.23
   resourcePrefabs:
-  - {fileID: 4327684884307014812, guid: ab6ef1f8a1111d94d971bd3e7589bd5f, type: 3}
-  - {fileID: 4928306635753559061, guid: 62e11545b56467c4d92bbeda334f0203, type: 3}
-  - {fileID: 4506796648444867695, guid: 879c4f0297c1503419cb751e7f1717d2, type: 3}
-  terrainMaterial: {fileID: 2100000, guid: a785be0b970c669428f9f72d7b3d2812, type: 2}
+  - {fileID: 919132149155446097, guid: d646ff88ed7ac9349b1ee1137dc4a1ac, type: 3}
+  - {fileID: 1520445605119993013, guid: 3c9aff32656f61a45b23d098a7cc695a, type: 3}
+  - {fileID: 4126163678448521108, guid: 458dfbd5d8a2d504faeb35a41105dbdb, type: 3}
+  - {fileID: 7384546911497174457, guid: ecc92c3be3f084e4fa92f27b9f63e987, type: 3}
+  - {fileID: 2497667008245689840, guid: 0d0e2b43a65e0fa419587a590f161d80, type: 3}
+  terrainMaterial: {fileID: 2100000, guid: 8f3bba206674d3f479b48b2a6833b79b, type: 2}
   edgeMaterial: {fileID: 2100000, guid: edf40659a02c6014bb9d9ea5e12c5f09, type: 2}
   waterLevel: 0.4
   scale: 0.025
   size: 200
+  groundColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
 --- !u!4 &1400708710
 Transform:
   m_ObjectHideFlags: 0
@@ -1381,7 +1428,7 @@ GameObject:
   - component: {fileID: 1558388657}
   - component: {fileID: 1558388656}
   m_Layer: 0
-  m_Name: WorldGenerator
+  m_Name: Tree Biome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1401,8 +1448,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1112966431211004617, guid: dc55d48783b365b46b0a987e823323fa, type: 3}
   player: {fileID: 1206987592}
-  resourceNoiseScale: 0.19
-  resourceDensity: 0.29
+  resourceNoiseScale: 0.34
+  resourceDensity: 0.14
   resourcePrefabs:
   - {fileID: 4327684884307014812, guid: ab6ef1f8a1111d94d971bd3e7589bd5f, type: 3}
   - {fileID: 4928306635753559061, guid: 62e11545b56467c4d92bbeda334f0203, type: 3}
@@ -1412,6 +1459,7 @@ MonoBehaviour:
   waterLevel: 0.4
   scale: 0.025
   size: 200
+  groundColor: {r: 0.04074583, g: 0.6603774, b: 0, a: 1}
 --- !u!4 &1558388657
 Transform:
   m_ObjectHideFlags: 0
@@ -1930,7 +1978,7 @@ GameObject:
   - component: {fileID: 1841564543}
   - component: {fileID: 1841564542}
   m_Layer: 0
-  m_Name: WorldGenerator (2)
+  m_Name: 'Desert '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1948,19 +1996,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408c640cc7940d74fa3bb828c53d098c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 1112966431211004617, guid: dc55d48783b365b46b0a987e823323fa, type: 3}
-  player: {fileID: 1206987592}
-  resourceNoiseScale: 0.19
-  resourceDensity: 0.29
+  spawnPoint: {fileID: 0}
+  player: {fileID: 0}
+  resourceNoiseScale: 0.43
+  resourceDensity: 0.1
   resourcePrefabs:
-  - {fileID: 4327684884307014812, guid: ab6ef1f8a1111d94d971bd3e7589bd5f, type: 3}
-  - {fileID: 4928306635753559061, guid: 62e11545b56467c4d92bbeda334f0203, type: 3}
-  - {fileID: 4506796648444867695, guid: 879c4f0297c1503419cb751e7f1717d2, type: 3}
-  terrainMaterial: {fileID: 2100000, guid: a785be0b970c669428f9f72d7b3d2812, type: 2}
+  - {fileID: 4336512290479841622, guid: c3f0f13dc3e5d6949b8d85337a9e828e, type: 3}
+  terrainMaterial: {fileID: 2100000, guid: 420ba72eda160b94987e8df541b3730d, type: 2}
   edgeMaterial: {fileID: 2100000, guid: edf40659a02c6014bb9d9ea5e12c5f09, type: 2}
   waterLevel: 0.4
   scale: 0.025
   size: 200
+  groundColor: {r: 1, g: 0.9882071, b: 0.6839622, a: 1}
 --- !u!4 &1841564543
 Transform:
   m_ObjectHideFlags: 0
@@ -2136,3 +2183,4 @@ SceneRoots:
   - {fileID: 183369218}
   - {fileID: 953387290}
   - {fileID: 1512101120}
+  - {fileID: 820557875}

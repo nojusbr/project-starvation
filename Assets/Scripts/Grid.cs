@@ -26,6 +26,7 @@ public class Grid : MonoBehaviour
     public float waterLevel = .4f;
     public float scale = .1f;
     public int size = 100;
+    public Color groundColor = Color.green;
 
     void Start()
     {
@@ -242,7 +243,7 @@ public class Grid : MonoBehaviour
                 if (cell.isWater)
                     colorMap[y * size + x] = Color.blue;
                 else
-                    colorMap[y * size + x] = new Color(153 / 255f, 191 / 255f, 115 / 255f);
+                    colorMap[y * size + x] = groundColor;
             }
         }
         texture.filterMode = FilterMode.Point;
@@ -282,7 +283,7 @@ public class Grid : MonoBehaviour
                         GameObject resource = Instantiate(prefab, transform);
                         resource.transform.position = new Vector3(x, 0, y);
                         resource.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
-                        resource.transform.localScale = Vector3.one * Random.Range(.8f, 1.2f);
+                        resource.transform.localScale += Vector3.one * Random.Range(.8f, 1.2f);
                         resource.transform.position = new Vector3(x, 0, y) + worldGeneratorPosition;
                     }
                 }
