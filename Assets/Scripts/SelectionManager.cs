@@ -63,7 +63,6 @@ public class SelectionManager : MonoBehaviour
     {
         IsChopping = true;
         yield return new WaitForSeconds(duration);
-        print("Chopping");
         IsChopping = false;
     }
 }

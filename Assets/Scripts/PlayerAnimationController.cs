@@ -89,10 +89,6 @@ public class PlayerAnimationController : MonoBehaviour
             StopCurrentAnimation();
         }
     }
-
-
-
-
     private IEnumerator ChopEffectRoutine(float duration)
     {
         yield return new WaitForSeconds(duration);
