@@ -76,7 +76,8 @@ public class Grid : MonoBehaviour
         DrawTexture(grid, worldGeneratorPosition);
         GenerateResources(grid, worldGeneratorPosition);
         SpawnPlayer(worldGeneratorPosition);
-        SpawnTeleporter(worldGeneratorPosition);
+        SpawnTeleporter1(worldGeneratorPosition);
+        SpawnTeleporter2(worldGeneratorPosition);
     }
 
     void Update()
@@ -376,41 +377,63 @@ public class Grid : MonoBehaviour
         }
     }
 
-    void SpawnTeleporter(Vector3 worldGeneratorPosition)
+    void SpawnTeleporter1(Vector3 worldGeneratorPosition)
     {
         int attempts = 0;
-        int maxAttempts = 100;
+        int maxAttempts = 1000;
 
         while (attempts < maxAttempts)
         {
-            int spawnXR = Random.Range(0, size);
-            int spawnXD = Random.Range(0, size);
-            int spawnYR = Random.Range(0, size);
-            int spawnYD = Random.Range(0, size);
+            int spawnX = Random.Range(0, size);
+            int spawnY = Random.Range(0, size);
+            //int spawnX2 = Random.Range(0, size);
+            //int spawnY2 = Random.Range(0, size);
 
 
-            Cell cellD = grid[spawnXR, spawnYR];
-            Cell cellR = grid[spawnXR, spawnYR];
+            //Cell cell2 = grid[spawnX2, spawnY2];
+            Cell cell = grid[spawnX, spawnY];
 
-            if (!cellR.isWater)
+            if (!cell.isWater)
             {
-                GameObject spawnedTeleporterR = Instantiate(teleporterR, new Vector3(spawnXR, 0, spawnYR), Quaternion.identity);
+                GameObject spawnedTeleporterR = Instantiate(teleporterR, new Vector3(spawnX, 0, spawnY), Quaternion.identity);
 
                 spawnedTeleporterR.transform.position += worldGeneratorPosition;
 
                 return;
             }
 
-            if (!cellD.isWater)
+            //if (!cell2.isWater)
+            //{
+            //    GameObject spawnedTeleporterD = Instantiate(teleporterD, new Vector3(spawnX2, 0, spawnY2), Quaternion.identity);
+            //    spawnedTeleporterD.transform.position += worldGeneratorPosition;
+            //    return;
+            //}
+            attempts++;
+        }
+    }
+
+    void SpawnTeleporter2(Vector3 worldGeneratorPosition)
+    {
+        int attempts = 0;
+        int maxAttempts = 1000;
+
+        while (attempts < maxAttempts)
+        {
+            int spawnX = Random.Range(0, size);
+            int spawnY = Random.Range(0, size);
+
+            Cell cell = grid[spawnX, spawnY];
+
+            if (!cell.isWater)
             {
-                GameObject spawnedTeleporterD = Instantiate(teleporterD, new Vector3(spawnXD, 0, spawnYD), Quaternion.identity);
+                GameObject spawnedTeleporterD = Instantiate(teleporterD, new Vector3(spawnX, 0, spawnY), Quaternion.identity);
 
                 spawnedTeleporterD.transform.position += worldGeneratorPosition;
 
                 return;
             }
+
             attempts++;
         }
     }
-
 }

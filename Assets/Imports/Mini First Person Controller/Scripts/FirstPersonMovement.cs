@@ -18,6 +18,9 @@ public class FirstPersonMovement : MonoBehaviour
     public Transform playerCam;
     public Transform capsuleMesh;
     public ParticleSystem dashEffect;
+    public GameObject teleporterD;
+    public GameObject teleporterR;
+    public Grid grid;
 
     [Header("Dashing")]
     public float dashForce;
@@ -54,6 +57,18 @@ public class FirstPersonMovement : MonoBehaviour
         {
             dashCdTimer -= Time.deltaTime;
             isDashing = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("TeleporterD"))
+        {
+            transform.position = teleporterD.transform.position;
+        }
+        if (collision.gameObject.CompareTag("TeleporterR"))
+        {
+            transform.position = teleporterR.transform.position;
         }
     }
 
