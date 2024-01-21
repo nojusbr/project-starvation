@@ -6,12 +6,14 @@ using UnityEngine.Rendering;
 
 public class SelectionManager : MonoBehaviour
 {
-    [Header("Trees")]
+    [Header("Resources")]
     [SerializeField] private string treeTag = "Tree";
-    [SerializeField] private float chopDamage = 1f;
+    [SerializeField] private string rockTag = "Rock";
+    [SerializeField] private float acquireDmg = 1f;
     [SerializeField] private Transform playerModel;
-    public bool IsChopping = false;
+    public bool IsAcquiring = false;
     public GameObject axe;
+    public GameObject pickaxe;
 
     public ToolManager toolManager;
 
@@ -27,19 +29,16 @@ public class SelectionManager : MonoBehaviour
 
     private void Update()
     {
-        AcquireResources();
+        ChopTree();
+        MineRock();
     }
 
-    public void AcquireResources()
+    public void ChopTree()
     {
         if (playerModel == null)
-        {
-            //Debug.LogError("Player model is not assigned to SelectionManager!");
             return;
-        }
 
         Ray ray = new Ray(playerModel.position, playerModel.forward);
-        //Debug.DrawRay(ray.origin, ray.direction * 10f, Color.red);
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
@@ -50,8 +49,8 @@ public class SelectionManager : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.E) && toolManager.isAxeEquipped)
                     {
-                        selection.GetComponent<ResourceManager>().ObtainResource(chopDamage);
-                        StartCoroutine(ChopRoutine(5f));
+                        selection.GetComponent<ResourceManager>().ObtainResource(acquireDmg);
+                        StartCoroutine(AcquireRoutine(5f));
 
                     }
                 }
@@ -59,10 +58,35 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ChopRoutine(float duration)
+    public void MineRock()
     {
-        IsChopping = true;
+        if (playerModel == null)
+            return;
+
+        Ray ray = new Ray(playerModel.position, playerModel.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            Transform selection = hit.transform;
+            if (selection.CompareTag(rockTag))
+            {
+                if (hit.distance < 2f)
+                {
+                    if (Input.GetKey(KeyCode.E) && toolManager.isPickaxeEquipped)
+                    {
+                        selection.GetComponent<ResourceManager>().ObtainResource(acquireDmg);
+                        StartCoroutine(AcquireRoutine(5f));
+
+                    }
+                }
+            }
+        }
+    }
+
+    private IEnumerator AcquireRoutine(float duration)
+    {
+        IsAcquiring = true;
         yield return new WaitForSeconds(duration);
-        IsChopping = false;
+        IsAcquiring = false;
     }
 }

@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rockC
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 912d52f388dcb65468c18fbc13115561, type: 3}
+      propertyPath: m_TagString
+      value: Rock
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 912d52f388dcb65468c18fbc13115561, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3214067253178857130}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 912d52f388dcb65468c18fbc13115561, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7614042266994114701}
   m_SourcePrefab: {fileID: 100100000, guid: 912d52f388dcb65468c18fbc13115561, type: 3}
 --- !u!1 &4126163678448521108 stripped
 GameObject:
@@ -102,3 +109,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7837143, y: 0.50999993, z: 0.5467608}
   m_Center: {x: 0.0394475, y: 0.25499997, z: -0.015928403}
+--- !u!114 &-7614042266994114701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126163678448521108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceea49fb6e7dd534a8d2942e15629e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceHealth: 1000
+  resourcePrefabs:
+  - {fileID: 2849612541876620046, guid: a6f04b88450a57349923e86469c35660, type: 3}
+  maxRandom: 8
+  minRandom: 2
+  audioSource: {fileID: 0}
+  sounds: []

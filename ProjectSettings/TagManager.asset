@@ -7,6 +7,31 @@ TagManager:
   - Water
   - Tree
   - Resource
+  - Fire
+  - Slot
+  - Slots
+  - Hotbar
+  - EquipmentSystem
+  - Panel
+  - Tooltip
+  - DraggingItem
+  - ItemIcon
+  - Item
+  - CraftSystem
+  - ResultSlot
+  - Canvas
+  - EventSystem
+  - MainInventory
+  - Timer
+  - Craft
+  - Vendor
+  - Inventory
+  - SkillBar
+  - Storage
+  - Weapon
+  - Equipment
+  - Enemy
+  - Rock
   layers:
   - Default
   - TransparentFX

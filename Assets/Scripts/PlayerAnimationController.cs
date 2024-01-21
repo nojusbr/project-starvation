@@ -18,7 +18,7 @@ public class PlayerAnimationController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E))
         {
-            if (!resourceGathering.IsChopping) return;
+            if (!resourceGathering.IsAcquiring) return;
             else CheckChopping();
         }
     }
@@ -79,7 +79,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void CheckChopping()
     {
-        if (resourceGathering.IsChopping)
+        if (resourceGathering.IsAcquiring)
         {
             PlayAnimation("IsChopping");
             StartCoroutine(ChopEffectRoutine(1.5f));

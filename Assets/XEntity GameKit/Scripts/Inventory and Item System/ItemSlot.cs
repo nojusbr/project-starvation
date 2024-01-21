@@ -52,7 +52,7 @@ namespace XEntity.InventoryItemSystem
             {
                 if (itemCount > 0)
                 {
-                    Utils.InstantiateItemCollector(slotItem, dropPosition + new Vector3(0,2,0));
+                    Utils.InstantiateItemCollector(slotItem, dropPosition);
                     itemCount--;
                 }
                 else break;

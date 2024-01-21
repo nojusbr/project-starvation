@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bb37a5e4810a7744a6b9d1f88712c1d, type: 3}
-  m_Name: Fir Tree Sapling
+  m_Name: Rock
   m_EditorClassIdentifier: 
   type: 0
-  itemName: Fir Tree Sapling
+  itemName: Rock
   itemPerSlot: 20
-  icon: {fileID: 21300060, guid: 096ec2c5d118e4e44a6a2e3abc02d7c2, type: 3}
-  prefab: {fileID: 4208038917562943627, guid: faab92cf3db2c6c4895dfa40785df0f9, type: 3}
-  itemInformation: A sapling to grow a tree.
+  icon: {fileID: 21300000, guid: baa105d969cf80349810a7c98998020f, type: 3}
+  prefab: {fileID: 0}
+  itemInformation: A hard rock
