@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -8,9 +9,11 @@ using Random = UnityEngine.Random;
 
 public class Grid : MonoBehaviour
 {
-    [Header("Random Player Spawnpoint")]
-    public GameObject spawnPoint;
+    [Header("Spawnpoints")]
+    public GameObject spawnpoint;
     public GameObject player;
+    public GameObject teleporterR;
+    public GameObject teleporterD;
 
     [Header("Resources")]
     public float resourceNoiseScale = .05f;
@@ -73,6 +76,57 @@ public class Grid : MonoBehaviour
         DrawTexture(grid, worldGeneratorPosition);
         GenerateResources(grid, worldGeneratorPosition);
         SpawnPlayer(worldGeneratorPosition);
+        SpawnTeleporter(worldGeneratorPosition);
+    }
+
+    void Update()
+    {
+        // Check if the B key is pressed
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            // Teleport the player back to the spawn point
+            TeleportPlayerToSpawnPoint();
+        }
+    }
+
+    void TeleportPlayerToSpawnPoint()
+    {
+        int spawnX = Random.Range(0, size);
+        int spawnY = Random.Range(0, size);
+
+        Cell cell = grid[spawnX, spawnY];
+
+        if (!cell.isWater)
+        {
+            // Move the player to the new spawn point
+            player.transform.position = new Vector3(spawnX, 0, spawnY) + transform.position;
+
+            // Find and delete the spawn point
+            GameObject spawnPointToDelete = GameObject.Find("SpawnPoint(Clone)");
+            GameObject spawnPointToDelete2 = GameObject.Find("Empty(Clone)");
+            if (spawnPointToDelete != null)
+            {
+                Destroy(spawnPointToDelete);
+            }
+            else
+            {
+                Debug.LogWarning("Spawn point not found for deletion.");
+            }
+            if (spawnPointToDelete2 != null)
+            {
+                Destroy(spawnPointToDelete2);
+            }
+            else
+            {
+                Debug.LogWarning("Spawn point not found for deletion.");
+            }
+        }
+        else
+        {
+            // Handle the case when the new spawn point is water (you may want to add more logic here)
+            Debug.LogWarning("Cannot teleport player to a water cell. Adjusting teleportation...");
+            SpawnPlayer(transform.position);
+        }
     }
 
     void DrawTerrainMesh(Cell[,] grid, Vector3 worldGeneratorPosition)
@@ -301,11 +355,12 @@ public class Grid : MonoBehaviour
             int spawnX = Random.Range(0, size);
             int spawnY = Random.Range(0, size);
 
+
             Cell cell = grid[spawnX, spawnY];
 
             if (!cell.isWater)
             {
-                GameObject spawnedSpawnPoint = Instantiate(spawnPoint, new Vector3(spawnX, 0, spawnY), Quaternion.identity);
+                GameObject spawnedSpawnPoint = Instantiate(spawnpoint, new Vector3(spawnX, 0, spawnY), Quaternion.identity);
 
                 player.transform.position = new Vector3(spawnedSpawnPoint.transform.position.x, spawnedSpawnPoint.transform.position.y, spawnedSpawnPoint.transform.position.z);
 
@@ -318,6 +373,43 @@ public class Grid : MonoBehaviour
             attempts++;
 
 
+        }
+    }
+
+    void SpawnTeleporter(Vector3 worldGeneratorPosition)
+    {
+        int attempts = 0;
+        int maxAttempts = 100;
+
+        while (attempts < maxAttempts)
+        {
+            int spawnXR = Random.Range(0, size);
+            int spawnXD = Random.Range(0, size);
+            int spawnYR = Random.Range(0, size);
+            int spawnYD = Random.Range(0, size);
+
+
+            Cell cellD = grid[spawnXR, spawnYR];
+            Cell cellR = grid[spawnXR, spawnYR];
+
+            if (!cellR.isWater)
+            {
+                GameObject spawnedTeleporterR = Instantiate(teleporterR, new Vector3(spawnXR, 0, spawnYR), Quaternion.identity);
+
+                spawnedTeleporterR.transform.position += worldGeneratorPosition;
+
+                return;
+            }
+
+            if (!cellD.isWater)
+            {
+                GameObject spawnedTeleporterD = Instantiate(teleporterD, new Vector3(spawnXD, 0, spawnYD), Quaternion.identity);
+
+                spawnedTeleporterD.transform.position += worldGeneratorPosition;
+
+                return;
+            }
+            attempts++;
         }
     }
 

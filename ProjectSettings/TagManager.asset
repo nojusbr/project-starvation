@@ -17,21 +17,10 @@ TagManager:
   - DraggingItem
   - ItemIcon
   - Item
-  - CraftSystem
-  - ResultSlot
-  - Canvas
   - EventSystem
-  - MainInventory
-  - Timer
-  - Craft
-  - Vendor
-  - Inventory
-  - SkillBar
-  - Storage
-  - Weapon
-  - Equipment
-  - Enemy
   - Rock
+  - TeleporterD
+  - TeleporterR
   layers:
   - Default
   - TransparentFX
