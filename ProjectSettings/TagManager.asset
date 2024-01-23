@@ -21,14 +21,17 @@ TagManager:
   - Rock
   - TeleporterD
   - TeleporterR
+  - Projectile
+  - PlayerProjectile
+  - Pumpkin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

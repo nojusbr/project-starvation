@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FirstPersonMovement : MonoBehaviour
 {
@@ -69,6 +70,10 @@ public class FirstPersonMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("TeleporterR"))
         {
             transform.position = teleporterR.transform.position;
+        }
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 

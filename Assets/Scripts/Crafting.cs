@@ -28,10 +28,6 @@ public class Crafting : MonoBehaviour
             // For example:
             Debug.Log("Crafting Wall!");
         }
-        else
-        {
-            Debug.Log("Not enough resources to craft a wall.");
-        }
     }
 
     private void RemoveResources(int count, string resourceName)

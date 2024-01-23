@@ -33,7 +33,7 @@ public class ToolManager : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (!isAxeEquipped)
             {
