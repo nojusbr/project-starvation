@@ -7196,6 +7196,10 @@ PrefabInstance:
       propertyPath: teleporterR
       value: 
       objectReference: {fileID: 2669009790343264483, guid: a6b42f3d0a8781540bb255f185065091, type: 3}
+    - target: {fileID: 4956569808883546287, guid: 240395e9018fc984996b127f97f8f440, type: 3}
+      propertyPath: projectileGun
+      value: 
+      objectReference: {fileID: 1141645664}
     - target: {fileID: 4963818188642646691, guid: 240395e9018fc984996b127f97f8f440, type: 3}
       propertyPath: m_Layer
       value: 6

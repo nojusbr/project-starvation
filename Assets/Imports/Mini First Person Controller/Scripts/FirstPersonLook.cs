@@ -9,7 +9,8 @@ public class FirstPersonLook : MonoBehaviour
 
     Vector2 velocity;
     Vector2 frameVelocity;
-
+    bool cursorLocked = true;
+    public ProjectileGun projectileGun;
 
     void Reset()
     {
@@ -20,7 +21,8 @@ public class FirstPersonLook : MonoBehaviour
     void Start()
     {
         // Lock the mouse cursor to the game screen.
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
+        projectileGun.enabled = true;
     }
 
     void Update()
@@ -33,7 +35,22 @@ public class FirstPersonLook : MonoBehaviour
         velocity.y = Mathf.Clamp(velocity.y, -90, 90);
 
         // Rotate camera up-down and controller left-right from velocity.
-        //  transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
+        // transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
         character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            cursorLocked = !cursorLocked;
+            Cursor.lockState = cursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
+
+            if (!cursorLocked)
+            {
+                projectileGun.enabled = false;
+            }
+            else
+            {
+                projectileGun.enabled = true;
+            }
+        }
     }
 }
