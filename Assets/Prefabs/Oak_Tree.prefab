@@ -125,7 +125,6 @@ MonoBehaviour:
   resourceHealth: 1000
   resourcePrefabs:
   - {fileID: 7763330124273197585, guid: dfdf5fcfd34b34849bb2fa2a59540a7a, type: 3}
-  - {fileID: 3098547295575099878, guid: 6280d24d7bb6bc640a507998339f5526, type: 3}
   maxRandom: 6
   minRandom: 1
   audioSource: {fileID: 0}
