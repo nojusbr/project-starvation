@@ -5829,6 +5829,7 @@ MonoBehaviour:
   fpsCam: {fileID: 371233804}
   attackPoint: {fileID: 1141645663}
   allowInvoke: 1
+  toolManager: {fileID: 1206987616}
 --- !u!114 &1145672018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3849709110571913883, guid: 2ab7f5bcdd8f953458d26c6efa7f2871, type: 3}
@@ -5931,6 +5932,17 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 2693222813600157983, guid: 240395e9018fc984996b127f97f8f440, type: 3}
   m_PrefabInstance: {fileID: 8972868297323713267}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1206987616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2375988857323699724, guid: 240395e9018fc984996b127f97f8f440, type: 3}
+  m_PrefabInstance: {fileID: 8972868297323713267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206987592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20813a5f1a2ba534e9211d3b8f3e426d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1226648013 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3849709110736898312, guid: 2ab7f5bcdd8f953458d26c6efa7f2871, type: 3}

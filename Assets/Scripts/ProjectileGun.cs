@@ -32,6 +32,7 @@ public class ProjectileGun : MonoBehaviour
     //public TextMeshProUGUI ammunitionDisplay;
     
     public bool allowInvoke = true;
+    public ToolManager toolManager;
 
     private void Awake()
     {
@@ -50,17 +51,25 @@ public class ProjectileGun : MonoBehaviour
 
     private void MyInput()
     {
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
-
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
-        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) Reload();
-
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        if (toolManager.isAxeEquipped)
         {
-            bulletsShot = 0;
-            Shoot();
+            if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
+            else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
+            if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) Reload();
+
+            if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
+            {
+                bulletsShot = 0;
+                Shoot();
+            }
+
+            bullet.SetActive(true);
+
         }
+
+        
     }
 
     private void Shoot()
